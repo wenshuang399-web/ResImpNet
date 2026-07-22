@@ -72,7 +72,7 @@ ResImpNet 是一个用于预测酶催化常数（kcat）的多模态深度学习
 
 ```bash
 python train.py \
-    --data_csv DEKP-kcat_dataset_fixed.csv \
+    --data_csv kcat_dataset.csv \
     --enzyme_h5 prott5_mean_embeddings.h5 \
     --substrate_h5 substrate_graph_embeddings.h5 \
     --residue_h5 protein_residue_embeddings.h5 \
