@@ -4,12 +4,10 @@
 """
 train_schemeB_with_importance_improved_sinpos.py
 
-- 保留改进版的 GFE / LFE / cross-attention 架构
+-  GFE / LFE / cross-attention 架构
 - 在 cross-attention（substrate -> residue tokens）处提取 attention weights
 - forward 支持 return_attention=True，返回归一化的 per-residue importance
-- 使用正弦/余弦位置编码（sinusoidal positional encoding），替换原有 learned prost_pos
-- test 阶段保存 importance（.npz）并为每个测试样本生成 mutation suggestions CSV
-- 不对 5 轮结果做跨轮平均（每轮单独保存 importance）
+- 使用正弦/余弦位置编码（sinusoidal positional encoding）
 """
 
 import os
@@ -369,7 +367,7 @@ def get_args():
     parser.add_argument('--lr', type=float, default=5e-5)
     parser.add_argument('--epochs', type=int, default=100)
     parser.add_argument('--batch_size', type=int, default=32)
-    parser.add_argument('--data_csv', type=str, default="DEKP-kcat_dataset_fixed.csv")
+    parser.add_argument('--data_csv', type=str, default="kcat_dataset.csv")
     parser.add_argument('--enzyme_h5', type=str, default="prott5_mean_embeddings.h5")
     parser.add_argument('--substrate_h5', type=str, default="substrate_graph_embeddings.h5")
     parser.add_argument('--residue_h5', type=str, default="protein_residue_embeddings.h5")
