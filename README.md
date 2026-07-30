@@ -6,7 +6,7 @@
 
 ## 🔍 Overview
 
-ResImpNet is a multi-modal deep learning framework designed for predicting enzyme catalytic constants (kcat/km). It integrates:
+ResImpNet is a multi-modal deep learning framework designed for predicting enzyme catalytic constants (kcat or km). It integrates:
 
 * **Protein sequence embeddings** (ProtT5)
 * **Substrate graph embeddings**
