@@ -1,4 +1,4 @@
-name: dekp-kcat
+name: kcat
 channels:
   - pytorch
   - conda-forge
