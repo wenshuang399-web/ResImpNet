@@ -5,7 +5,7 @@ from torch_geometric.utils.smiles import from_smiles
 from torch_geometric.data import Data
 
 # Step 1: 读取 CSV 文件
-csv_path = "389.csv"
+csv_path = "demo_kcat.csv"
 df = pd.read_csv(csv_path)
 
 # Step 2: 转换 SMILES 为 PyG Data 对象
@@ -35,11 +35,11 @@ for i, row in df.iterrows():
 print(f"成功转换 {len(graphs)} 个分子为 PyG 图对象")
 
 # Step 3: 保存到磁盘
-torch.save(graphs, "graphs2.pt")
-print("所有分子图已保存到 graphs2.pt")
+torch.save(graphs, "graphs.pt")
+print("所有分子图已保存到 graphs.pt")
 
 # Step 4: 加载示例
-loaded_graphs = torch.load("graphs2.pt")
+loaded_graphs = torch.load("graphs.pt")
 print(f"加载成功，共 {len(loaded_graphs)} 个分子图")
 print("示例:", loaded_graphs[0])
 
