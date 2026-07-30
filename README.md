@@ -20,7 +20,7 @@ This repository contains:
 * `model.py` — Model architecture, including GFE/LFE modules, cross-attention, and sinusoidal positional encoding
 * `train.py` — Model training, validation, testing, residue importance extraction, and mutation suggestion generation
 * Feature extraction scripts
-* Pre-trained model checkpoints
+
 
 
 ---
