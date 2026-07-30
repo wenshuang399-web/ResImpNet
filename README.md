@@ -254,34 +254,6 @@ These outputs provide both predictive results and interpretable residue-level in
 
 ---
 
-# 📂 Repository Structure
-
-```
-ResImpNet
-│
-├── model.py
-├── train.py
-├── requirements.txt
-├── environment.yml
-├── README.md
-│
-├── Feature Extraction/
-│   ├── prott5_embedding.py
-│   ├── protein_residue_embeddings.py
-│   └── substrate_graph_embedding.py
-│
-├── data/
-│   ├── kcat_dataset.csv
-│   ├── prott5_mean_embeddings.h5
-│   ├── substrate_graph_embeddings.h5
-│   └── protein_residue_embeddings.h5
-│
-└── SchemeB_importance_out_sinpos/
-    ├── checkpoints/
-    ├── predictions/
-    ├── residue_importance/
-
-
 # 📜 License
 
 This project is released under the MIT License.
