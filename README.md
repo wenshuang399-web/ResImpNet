@@ -1,39 +1,46 @@
 # ResImpNet: A Multi-Modal Deep Learning Framework for Enzyme kcat Prediction
 
-**Sinusoidal Positional Encoding + Cross-Attention-Based Residue Importance + Mutation Suggestion**
+**Sinusoidal Positional Encoding + Cross-Attention-Based Residue Importance **
 
 ---
 
 ## 🔍 Overview
 
-ResImpNet is a multi-modal deep learning framework designed for predicting enzyme catalytic constants (kcat or km). It integrates:
+ResImpNet is a multi-modal deep learning framework for predicting enzyme catalytic constants (**kcat or km**). The framework integrates protein sequence information, substrate molecular representations, and residue-level structural embeddings to improve predictive accuracy while providing interpretable residue importance scores for rational enzyme engineering.
 
-* **Protein sequence embeddings** (ProtT5)
-* **Substrate graph embeddings**
-* **Protein structure-based residue-level embeddings**
-* **Scheme-B architecture** (GFE + LFE + Cross-Attention)
-* **Cross-attention-based residue importance extraction**
-* **Importance-guided mutation suggestion**
+The framework consists of:
+
+- **Protein sequence embeddings (ProtT5)**
+- **Substrate graph embeddings**
+- **Protein residue-level structural embeddings**
+- **Sinusoidal positional encoding**
+- **Cross-attention-based residue importance extraction**
+- **Global Feature Extraction (GFE)**
+- **Local Feature Extraction (LFE)**
+- **Importance-guided mutation suggestion**
 
 This repository contains:
 
-* `model.py` — Model architecture, including GFE/LFE modules, cross-attention, and sinusoidal positional encoding
-* `train.py` — Model training, validation, testing, residue importance extraction, and mutation suggestion generation
-* Feature extraction scripts
-
-
+- `model.py` – ResImpNet model architecture
+- `train.py` – Model training, validation, testing, residue importance extraction
+- Feature extraction scripts
+- Example input files
 
 ---
 
 # 🧬 Input Features
 
-## 1. Enzyme Sequence Embeddings (ProtT5)
+## 1. Protein Sequence Embeddings (ProtT5)
 
-**File:**
-`prott5_mean_embeddings.h5`
+**File**
 
-* Each enzyme is represented as a global sequence embedding.
-* Feature dimension:
+```
+prott5_mean_embeddings.h5
+```
+
+Each enzyme is represented as a global protein embedding.
+
+Feature dimension
 
 ```
 [1024]
@@ -43,11 +50,15 @@ This repository contains:
 
 ## 2. Substrate Graph Embeddings
 
-**File:**
-`substrate_graph_embeddings.h5`
+**File**
 
-* The substrate molecular graph is encoded using a graph-based neural representation.
-* Feature dimension:
+```
+substrate_graph_embeddings.h5
+```
+
+Each substrate is encoded using a graph neural representation.
+
+Feature dimension
 
 ```
 [128]
@@ -57,34 +68,36 @@ This repository contains:
 
 ## 3. Protein Residue-Level Structural Embeddings
 
-**File:**
-`protein_residue_embeddings.h5`
-
-* Residue-level representations derived from protein structural information.
-* Each residue is represented independently.
-
-Feature dimension:
+**File**
 
 ```
-[L, 128]
+protein_residue_embeddings.h5
 ```
 
-where:
+Each residue is represented independently using structure-derived embeddings.
 
-* **L** = protein sequence length
-* **128** = residue embedding dimension
+Feature dimension
+
+```
+[L,128]
+```
+
+where
+
+- **L** = protein sequence length
+- **128** = residue embedding dimension
 
 ---
 
 # 🧠 Model Architecture
 
-ResImpNet adopts the Scheme-B architecture, consisting of several key modules.
+ResImpNet adopts the proposed **Scheme-B** architecture.
 
 ---
 
 ## 1. Sinusoidal Positional Encoding
 
-Sinusoidal positional encoding is introduced into residue-level tokens to provide spatial sequence-order information and improve the stability of residue representation learning.
+Residue tokens are enhanced using sinusoidal positional encoding to preserve sequence-order information and improve residue representation learning.
 
 ---
 
@@ -92,35 +105,32 @@ Sinusoidal positional encoding is introduced into residue-level tokens to provid
 
 ### Substrate → Residue Tokens
 
-Cross-attention is used to model the interaction between substrate features and residue-level structural representations.
+Cross-attention models interactions between substrate representations and residue-level structural embeddings.
 
-Functions:
+Functions include:
 
-* Integrates substrate information with protein structural features
-* Identifies substrate-interacting residues
-* Extracts **per-residue importance scores** from attention weights
+- Integrating substrate information into protein structural representations
+- Identifying substrate-interacting residues
+- Extracting residue importance scores from attention weights
 
 ---
 
 ## 3. Global Feature Extraction (GFE)
 
-The GFE module applies bidirectional cross-attention:
-
-* Residue representation → Sequence representation
-* Sequence representation → Residue representation
+The GFE module applies bidirectional cross-attention between global sequence representations and residue representations.
 
 Purpose:
 
-* Capture long-range dependencies
-* Learn global enzyme-substrate interaction patterns
+- Capture long-range dependencies
+- Learn global enzyme–substrate interaction patterns
 
 ---
 
 ## 4. Local Feature Extraction (LFE)
 
-The LFE module applies multi-scale convolution operations:
+The LFE module employs multi-scale convolution layers.
 
-Kernel sizes:
+Kernel sizes
 
 ```
 3 / 5 / 7
@@ -128,19 +138,19 @@ Kernel sizes:
 
 Purpose:
 
-* Capture local structural motifs
-* Extract neighborhood-level residue patterns
+- Capture local structural motifs
+- Learn neighborhood-level residue patterns
 
 ---
 
 ## 5. Feature Fusion and Regression
 
-The extracted features are combined:
+The extracted representations are fused as follows:
 
 ```
 Global enzyme representation
         +
-Local residue-level features
+Local residue features
         +
 Substrate representation
         ↓
@@ -149,13 +159,62 @@ Regression Head
 Predicted log10(kcat)
 ```
 
-The final model outputs the predicted enzyme catalytic constant (**kcat or km**).
+The final output is the predicted enzyme catalytic constant.
+
+---
+
+# 💻 System Requirements
+
+## Hardware
+
+For prediction: Any machine running a Linux-based operating system is recommended.
+For training: A Linux-based operating system on a GPU-enabled machine is recommended.
+
+## Software
+
+- Python 3.9
+- PyTorch ≥ 1.12
+- NumPy ≥ 1.21
+- Pandas ≥ 1.3
+- SciPy ≥ 1.7
+- Scikit-learn ≥ 1.0
+- h5py ≥ 3.6
+- tqdm ≥ 4.64
+- seaborn ≥ 0.11
+
+The framework is compatible with Linux.
+
+---
+
+# ⚙️ Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/wenshuang399-web/ResImpNet.git
+
+cd ResImpNet
+```
+
+### Install using Conda
+
+```bash
+conda env create -f environment.yml
+
+conda activate ResImpNet
+```
+
+### Or install using pip
+
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
 # 🚀 Training
 
-Example training command:
+Example training command
 
 ```bash
 python train.py \
@@ -166,6 +225,63 @@ python train.py \
     --out_dir SchemeB_importance_out_sinpos
 ```
 
+---
+
+# ⏱ Installation Time
+
+Typical installation on a standard desktop computer requires approximately **5–10 minutes**, depending on internet speed and package download time.
+
+---
+
+# ⏳ Expected Run Time for Demo
+
+Running the demo on a single NVIDIA RTX 4090 GPU typically requires approximately **2–5 minutes**, depending on the size of the input dataset.
+
+CPU execution is supported but may require significantly longer runtime.
+
+---
+
+# 📄 Expected Output
+
+After training or inference, the output directory (`SchemeB_importance_out_sinpos/`) contains:
+
+- Trained model checkpoints (`*.pth`)
+- Training and validation logs
+- Predicted log10(kcat) values
+- Residue importance scores extracted from the cross-attention module
+
+These outputs provide both predictive results and interpretable residue-level information for downstream enzyme engineering.
+
+---
+
+# 📂 Repository Structure
+
+```
+ResImpNet
+│
+├── model.py
+├── train.py
+├── requirements.txt
+├── environment.yml
+├── README.md
+│
+├── Feature Extraction/
+│   ├── prott5_embedding.py
+│   ├── protein_residue_embeddings.py
+│   └── substrate_graph_embedding.py
+│
+├── data/
+│   ├── kcat_dataset.csv
+│   ├── prott5_mean_embeddings.h5
+│   ├── substrate_graph_embeddings.h5
+│   └── protein_residue_embeddings.h5
+│
+└── SchemeB_importance_out_sinpos/
+    ├── checkpoints/
+    ├── predictions/
+    ├── residue_importance/
 
 
-This enables an AI-guided enzyme engineering strategy combining **kinetic prediction, structural interpretation, and rational mutation design**.
+# 📜 License
+
+This project is released under the MIT License.
