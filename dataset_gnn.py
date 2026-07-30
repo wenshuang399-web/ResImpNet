@@ -20,7 +20,7 @@ def merge_chains(chains, pdb_id):
     }
 
 # 读取原始 JSON
-with open("protein_structures2.json") as f:
+with open("protein_structures.json") as f:
     structures = json.load(f)
 
 # 按 PDB 文件分组
