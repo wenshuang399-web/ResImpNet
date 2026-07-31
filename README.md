@@ -89,10 +89,7 @@ CPU execution is supported but may require significantly longer runtime.
 
 # 📄 Expected Output
 
-After training or inference, the output directory (`SchemeB_importance_out_sinpos/`) contains:
-
-- Trained model checkpoints (`*.pth`)
-- Training and validation logs
+After training or inference, the output directory (`SchemeB_importance_out_sinpos/`) contain:
 - Predicted log10(kcat) values and log10(km) values
 - Residue importance scores extracted from the cross-attention module
 
