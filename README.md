@@ -107,6 +107,11 @@ where:
 
 After preparing the input CSV file and feature embeddings, run:
 
+```markdown
+## 2. Run ResImpNet for kinetic parameter prediction
+
+After preparing the input CSV file and feature embeddings, run:
+
 ```bash
 python predict.py \
     --data_csv samples/sample_inp.csv \
@@ -117,7 +122,7 @@ python predict.py \
     --batch_size 64 \
     --device cuda:0 \
     --out_fpath resimpnet_prediction.csv
-# ⏱ Installation Time
+## ⏱ Installation Time
 
 Typical installation on a standard desktop computer requires approximately **5–10 minutes**, depending on internet speed and package download time.
 
