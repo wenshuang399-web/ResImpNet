@@ -134,7 +134,7 @@ def get_args():
     parser.add_argument('--lr', type=float, default=5e-5)
     parser.add_argument('--epochs', type=int, default=100)
     parser.add_argument('--batch_size', type=int, default=32)
-    parser.add_argument('--data_csv', type=str, default="DEKP-kcat_dataset_fixed.csv")
+    parser.add_argument('--data_csv', type=str, default="kcat_dataset.csv")
     parser.add_argument('--enzyme_h5', type=str, default="prott5_mean_embeddings.h5")
     parser.add_argument('--substrate_h5', type=str, default="substrate_graph_embeddings.h5")
     parser.add_argument('--residue_h5', type=str, default="protein_residue_embeddings.h5")
