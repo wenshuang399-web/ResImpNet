@@ -97,8 +97,8 @@ def read_fasta(fasta_path):
 # 保存到两个 HDF5 文件
 # ===================================
 def save_embeddings(features, out_dir):
-    mean_path = os.path.join(out_dir, "prott5_mean_embeddings2.h5")
-    residue_path = os.path.join(out_dir, "prott5_residue_embeddings2.h5")
+    mean_path = os.path.join(out_dir, "prott5_mean_embeddings.h5")
+    residue_path = os.path.join(out_dir, "prott5_residue_embeddings.h5")
 
     with h5py.File(mean_path, "w") as h5_mean, h5py.File(residue_path, "w") as h5_res:
         for f in features:
@@ -113,8 +113,8 @@ def save_embeddings(features, out_dir):
 # 主流程
 # ===================================
 if __name__ == "__main__":
-    fasta_file = "/home/bio.usr07/Desktop/pretrain/model/389.fasta"
-    out_dir = "/home/bio.usr07/Desktop/pretrain/model/prott5_embeddings1"
+    fasta_file = "……/demo.fasta"
+    out_dir = "……/prott5_embeddings"
     os.makedirs(out_dir, exist_ok=True)
 
     seq_ids, sequences = read_fasta(fasta_file)
