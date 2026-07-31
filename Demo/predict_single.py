@@ -9,11 +9,11 @@ import numpy as np
 from train_schemeB_with_sinpos import SchemeBModel, suggest_mutations
 
 # 文件路径
-enzyme_h5 = "prott5_mean_embeddings2.h5"
-substrate_h5 = "substrate_graph_embeddings2.h5"
-residue_h5 = "protein_residue_embeddings2.h5"
-csv_file = "389.csv"
-checkpoint_path = "model_round1_sinpos.pt"
+enzyme_h5 = "prott5_mean_embeddings.h5"
+substrate_h5 = "substrate_graph_embeddings.h5"
+residue_h5 = "protein_residue_embeddings.h5"
+csv_file = "demo_kcat.csv"
+checkpoint_path = "model.pt"
 
 # 读取 CSV（只有一条序列）
 df = pd.read_csv(csv_file)
