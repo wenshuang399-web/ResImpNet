@@ -1,4 +1,4 @@
-# ResImpNet: A Multi-Modal Deep Learning Framework for Enzyme kcat Prediction
+# # ResImpNet: A Multi-Modal Deep Learning Framework for Enzyme Kinetic Parameter Prediction
 ---
 
 ## 🔍 Overview
@@ -93,7 +93,7 @@ After training or inference, the output directory (`SchemeB_importance_out_sinpo
 
 - Trained model checkpoints (`*.pth`)
 - Training and validation logs
-- Predicted log10(kcat) values
+- Predicted log10(kcat) values and log10(km) values
 - Residue importance scores extracted from the cross-attention module
 
 These outputs provide both predictive results and interpretable residue-level information for downstream enzyme engineering.
