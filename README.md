@@ -1,13 +1,10 @@
 # ResImpNet: A Multi-Modal Deep Learning Framework for Enzyme kcat Prediction
-
-<img width="700" height="281" alt="image" src="https://github.com/user-attachments/assets/082c761b-fd1b-42e6-86f3-058e553877e2" />
-
-
 ---
 
 ## 🔍 Overview
 
-ResImpNet is a multi-modal deep learning framework for predicting enzyme catalytic constants (**kcat or km**). The framework integrates protein sequence information, substrate molecular representations, and residue-level structural embeddings to improve predictive accuracy while providing interpretable residue importance scores for rational enzyme engineering.
+Predicting enzyme kinetic parameters is fundamental for enzyme discovery and engineering. Here, we develop **ResImpNet**, a multi-modal deep learning framework for predicting enzyme catalytic parameters (**kcat and Km**) by integrating protein sequence information, substrate molecular representations, and protein structural information.
+ResImpNet employs cross-attention-based feature interaction and multi-scale representation learning to capture complex enzyme–substrate relationships. In addition, the model provides interpretable residue importance scores through attention mechanisms, enabling identification of functionally important residues and facilitating rational mutation design. This framework establishes an integrated strategy combining kinetic prediction, structural interpretation, and AI-assisted enzyme engineering.
 
 
 # 💻 System Requirements
@@ -17,7 +14,8 @@ ResImpNet is a multi-modal deep learning framework for predicting enzyme catalyt
 For prediction: Any machine running a Linux-based operating system is recommended.
 For training: A Linux-based operating system on a GPU-enabled machine is recommended.
 
-## Software
+## Create the ResImpNet environment
+To run ResImpNet, you should create a conda environment that includes the following packages:
 
 - Python 3.9
 - PyTorch ≥ 1.12
@@ -30,6 +28,7 @@ For training: A Linux-based operating system on a GPU-enabled machine is recomme
 - seaborn ≥ 0.11
 
 The framework is compatible with Linux.
+In addition, ResImpNet also relies on additional pre-trained models, including prot_t5_xl_uniref50 and GVP-GNN. These two models are used for extracting features from enzymes and structures, respectively. You need to place the weights for these two pre-trained models in the models directory.
 
 ---
 
