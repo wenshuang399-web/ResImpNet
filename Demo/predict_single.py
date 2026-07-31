@@ -78,13 +78,13 @@ for i, (aa, score) in enumerate(zip(sequence, imp_vec), start=1):
     rows.append([i, aa, score, pred_val])
 
 out_df = pd.DataFrame(rows, columns=["ResidueIndex","Residue","Importance","Predicted"])
-out_df.to_csv("389prediction_importance.csv", index=False)
+out_df.to_csv("prediction_importance.csv", index=False)
 print("Saved prediction_importance.csv")
 
 # 生成并保存 mutation suggestions
 mut_sugg = suggest_mutations(imp_vec, sequence, top_n=30)
 mut_df = pd.DataFrame(mut_sugg, columns=["ResidueIndex","Residue","Importance","Suggestion"])
-mut_df.to_csv("389prediction_mutations.csv", index=False)
+mut_df.to_csv("prediction_mutations.csv", index=False)
 print("Saved prediction_mutations.csv")
 
 # 打印前10条 mutation suggestions
