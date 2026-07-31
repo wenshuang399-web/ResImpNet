@@ -12,7 +12,7 @@ from train_schemeB_with_sinpos import SchemeBModel, suggest_mutations
 enzyme_h5 = "prott5_mean_embeddings.h5"
 substrate_h5 = "substrate_graph_embeddings.h5"
 residue_h5 = "protein_residue_embeddings.h5"
-csv_file = "demo_kcat.csv"
+csv_file = "demo.csv"
 checkpoint_path = "model.pt"
 
 # 读取 CSV（只有一条序列）
