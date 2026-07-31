@@ -8,7 +8,7 @@ from torch_geometric.loader import DataLoader
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # 加载 JSON 文件
-with open("protein_structures2.json") as f:
+with open("protein_structures.json") as f:
     data_list = json.load(f)
 
 dataset = gvp.data.ProteinGraphDataset(data_list)
@@ -23,8 +23,8 @@ model = MQAModel(
 model.eval()
 
 # 分别打开两个文件：一个保存残基级，一个保存蛋白质级
-with h5py.File("protein_residue_embeddings1.h5", "w") as h5f_residue, \
-     h5py.File("protein_protein_embeddings1.h5", "w") as h5f_protein:
+with h5py.File("protein_residue_embeddings.h5", "w") as h5f_residue, \
+     h5py.File("protein_protein_embeddings.h5", "w") as h5f_protein:
 
     for batch in loader:
         batch = batch.to(device)
